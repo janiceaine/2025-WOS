@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PixelPunks</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- Header content Section -->
+    <header>
+      <div class="container flex-container">
+        <h1>Pixel<span class="span-title">Punks</span></h1>
+
+        <div class="header-right">
+          <div class="search-bar">
+            <input
+              type="text"
+              name="search-input"
+              id="search-input"
+              placeholder="Search PixelPunks"
+            />
+            <button type="button" class="search-btn" onclick="searchAlert()">
+              Search
+            </button>
+          </div>
+
+          <button class="btn cart-icon">
+            <img
+              src="./images/cart.webp"
+              alt="Cart"
+              onclick="cartItems('#cart-counter')"
+            />
+            <span class="cart-count" id="cart-counter">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- navigation bar content  section -->
+    <nav>
+      <div class="container">
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Games</a></li>
+          <li><a href="#">Account</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Cart</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main content Section -->
+    <main>
+      <div class="container">
+        <!-- Top Main Section Content -->
+        <section>
+          <h2>Punk Picks of the Week</h2>
+
+          <div class="container flex-container image-browser">
+            <button class="btn">
+              <img
+                src="images/chevron-left.webp"
+                alt="Left arrow"
+                onclick="prevImage('#images')"
+              />
+            </button>
+
+            <img
+              class="main-images"
+              src="./images/blasterrex.webp"
+              alt="blasterrex"
+              id="images"
+            />
+
+            <button class="btn">
+              <img
+                src="images/chevron-right.webp"
+                alt="Right arrow"
+                onclick="nextImage('#images')"
+              />
+            </button>
+          </div>
+        </section>
+
+        <!-- Bottom Aside Section section -->
+        <aside>
+          <h3>Top of the Punk Stack</h3>
+
+          <div class="aside-container">
+            <div class="aside-item">
+              <img
+                class="aside-images"
+                src="./images/chronoclash-turbo.webp"
+                alt="Chronoclash Turbo"
+              />
+
+              <div class="aside-text">
+                <div class="aside-title">
+                  <h4>Chronoclash Turbo</h4>
+                  <p>
+                    Shift gears and realities in this high-octane, time-warping
+                    racer. Outdrive gladiators, cowboys, and future cops across
+                    eras in an endless multiverse showdown.
+                  </p>
+                </div>
+
+                <div class="game-price">
+                  <p>$10.99</p>
+                  <button class="cart-btn" onclick="cartItems('#cart-counter')">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="aside-item">
+              <img
+                class="aside-images"
+                src="./images/hyper-flux.webp"
+                alt="Hyper Flux"
+              />
+
+              <div class="aside-text">
+                <div class="aside-title">
+                  <h4>Hyper Flux</h4>
+                  <p>
+                    Dive into a neon-lit reactor run where gravity's optional
+                    and the stakes are nuclear. Speed, jump, and hack your way
+                    through a rogue AI's meltdown maze.
+                  </p>
+                </div>
+
+                <div class="game-price">
+                  <p>$12.99</p>
+                  <button class="cart-btn" onclick="cartItems('#cart-counter')">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="aside-item">
+              <img
+                class="aside-images"
+                src="./images/starpunch-7.webp"
+                alt="Starpunch 7"
+              />
+
+              <div class="aside-text">
+                <div class="aside-title">
+                  <h4>Starpunch 7</h4>
+                  <p>
+                    Humanity's last hope is a boxing glove taped to a rocket.
+                    Jab, dodge, and blast your way through waves of alien punks
+                    in this space-brawling, chaos-fueled classic.
+                  </p>
+                </div>
+
+                <div class="game-price">
+                  <p>$8.99</p>
+                  <button class="cart-btn" onclick="cartItems('#cart-counter')">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>

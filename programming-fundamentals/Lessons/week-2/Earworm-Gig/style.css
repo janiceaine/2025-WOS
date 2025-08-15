@@ -1,0 +1,21 @@
+h1 {
+    color: rgb(143, 5, 181);
+}
+
+.word {
+    color: blue;;
+}
+
+.navbar {
+    background-color: rgb(33, 6, 211);
+    margin-top: 20px;
+    padding: 0.05rem;
+    text-align: center;
+    color: white;
+
+}
+
+footer {
+    text-align: right;
+    margin-top: 10px;
+}

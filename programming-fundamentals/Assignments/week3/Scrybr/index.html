@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrybr</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script> 
+</head>
+<body>
+    <header>
+        <h1>Scrybr</h1>
+    </header>
+
+    <section class="container">
+        
+        <main class="flex1" style="flex: 5">
+            <div class="flex-container">
+                <div class="scrybr-post">
+                    <div class="scrybr-header">
+                        <img src="./images/elyndra-willowstep.png" alt="Elyndra">
+                        <h3>Elyndra Willowstep</h3>
+                    </div>
+
+                    <p>Just spotted a moonshadow lynx near the Duskwatch cliffs. left it a bundle of chamomile and a whispered promise. 🌙🐾</p>
+                </div>
+
+                <div class="scrybr-likes" onclick = "increasedLikes('#scrybr-Likes1')">
+                    <p><span id="scrybr-Likes1">14</span> likes</p>
+
+                    <button>🔮 scry</button>
+                </div>
+            </div>
+
+
+            <div class="flex-container">
+                <div class="scrybr-post">
+                    <div class="scrybr-header">
+                        <img src="./images/drakthorn.png" alt="Drakthon">
+                        <h3>Drakthon the Blue</h3>
+                    </div>
+
+                    <p>Why do rangers always post vague forest poetry? Say what you mean, Elyndra. Also, I sneezed fire today. Again. 😤🔥</p>
+                </div>
+
+                <div class="scrybr-likes" onclick = "increasedLikes('#scrybr-Likes2')">
+                    <p><span id="scrybr-Likes2">3</span> likes</p>
+
+                    <button>🔮 scry</button>
+                </div>
+
+            </div> 
+
+
+            <div class="flex-container">
+                <div class="scrybr-post">
+                    <div class="scrybr-header">
+                        <img src="./images/mycomage.png" alt="MycoMage">
+                        <h3>MycoMage</h3>
+                    </div>
+
+                    <p>Reminder: licking glowshrooms is not advised. Side effects include mild levitation and conversational goblins. Ask me how I know. 🍄🙃</p>
+                </div>
+
+                <div class="scrybr-likes" onclick = "increasedLikes('#scrybr-Likes3')">
+                    <p><span id="scrybr-Likes3">35</span> likes</p>
+
+                    <button>🔮 scry</button>
+                </div>
+            </div>
+        </main>
+
+        <aside class="flex2" style="flex: 1">
+            <div>
+                <div class="aside-image"><img src="./images/elyndra-willowstep.png" alt="Elyndra"></div>
+
+                <div class="aside-text">
+                    <h2>Elyndra Willowstep</h2>
+                    <p class="aside-paragraph">Roaming the Whispering Pines. Collector of rare herbs, secrets, and starry-sky selfies. If you're lost, follow the moss.🧭✨</p>
+                </div>
+            </div>
+        </aside>
+
+    </section>
+</body>
+</html>

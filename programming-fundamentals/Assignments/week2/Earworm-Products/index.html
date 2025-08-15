@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earworm Products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="flex-container">
+        <img src="./images/earworm-mascot.webp" alt="earworm mascot" width="100" height="60">
+    </header>
+
+    <nav class="flex-spread">
+        <h1>earworm, inc.</h1>
+        <div>
+            <ul class="menu flex-nav">
+                <li><a href="home">home</a></li>
+                <li><a href="about-earworm">about earworm</a></li>
+                <li><a href="products">products</a></li>
+                <li class="cart">
+                    <button class="btn-circle">
+                        <a href="cart"><img src="./images/cart-24.png" alt="cart icon">
+                        </a>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="column-layout">
+        <aside class="flex-1">
+            <article class="support bars">
+                <h3>Support</h3>
+                <ul class="support-list">
+                    <li>Setup Guide (PDF)</li>
+                    <li>Warranty & Registration</li>
+                    <li>Replacement Parts</li>
+                </ul>
+
+                <h3>Did you know?</h3>
+                <p>The cardioid pickup pattern reduces noise from behind the mic — perfect for untreated rooms and noisy neighbors.</p>
+            </article>
+
+            <article class="ad bars">
+                <h3>Get the Earworm insider</h3>
+                <p>Studio hacks, gear guides, and behind-the-scenes exclusives — delivered monthly to your inbox.</p>
+                <button class="sign-up-btn">Sign Up Free →</button>
+            </article>
+        </aside>
+        
+        <main class="card flex-3 ">
+            <div class="product-details">
+                <h2>Earworm Cardioid E-23 Microphone</h2>
+                <figure class="product-image">
+                    <img src="./images/cardioid-mic.webp" alt="Earworm Microphone" aria-label="Earworm Cardioid E-23 Microphone">
+                    <figcaption>Earworm Cardioid E-23 Microphone</figcaption>
+                </figure>
+                <h3>Details:</h3>
+                <p>Capture every nuance of your voice with the Earworm Cardioid E-23 Microphone — engineered for podcasters, vocalists, and audio obsessives alike. With its smooth frequency resonse and built-in pop protection, this mic delivers warmth and clarity straight out of the box.</p>
+                <p>Housed in a rugged matte shell and built to reduce background noise in untreated spaces, E-23 is equally at home in proffesional studios and bedroom setups. Plug it in, press record, and hear your voice the way it was meant to be heard — crisp, confident, and unmistakebly you.</p>
+                
+                <div class="price-bar">
+                    <div class="price-details">
+                        <h3 class="price-title">PRICE</h3>
+                        <p><strong>$249.00</strong></p>
+                    </div>
+                    <button class="price-btn">ADD TO CART</button>
+                </div>
+                
+            </div>
+
+            <div class="related-products">
+                <h2>Related Products</h2>
+                <hr>
+                <ul class="related-list flex-container">
+                    <li>
+                        <div class="flex-list">
+                            <img src="./images/pop-filter-thumb.webp" alt="Earworm Pop Filter">
+                            <h5>Earworm Pop Filter</h5>
+                            <div class="flex-price">
+                                <p>$29.99</p>
+                                <button class="product-btn">View</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="flex-list">
+                            <img src="./images/xlr-cable-thumb.webp" alt="Earworm XLR Cable">
+                            <h5>Earworm XLR Cable</h5>
+                            <div class="flex-price">
+                                <p>$19.99</p>
+                                <button class="product-btn">View</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="flex-list">
+                            <img src="./images/shock-mount-thumb.webp" alt="Earworm Shock Mount">
+                            <h5>Earworm Shock Mount</h5>
+                            <div class="flex-price">
+                                <p>$39.99</p>
+                                <button class="product-btn">View</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <hr>
+        <div class="flex-spread foot-bar">
+            <p>© 2023 earworm, inc. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="Privacy" class="foot-bar">Privacy</a></li>
+                <li><a href="Terms" class="foot-bar">Terms</a></li>
+                <li><a href="Contact" class="foot-bar">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

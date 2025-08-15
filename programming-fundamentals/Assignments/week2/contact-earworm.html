@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earworm Contact Form</title>
+</head>
+<body>
+    <h1>Contact Earworm Inc.</h1>
+    <h2>We'd love your feedback</h2>
+    <form action="submit">
+        <div>
+            <label for="name">Name</label>
+            <span aria-hidden="true">*</span>
+            <input type="text" id="name" name="name" autocomplete="name" aria-describedby="name-help"> 
+            <br>
+            <small id="name-help" role="alert">Please enter your full name.</small>
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <span aria-hidden="true">*</span>
+            <input type="email" id="email" name="email" autocomplete="email" aria-describedby="email-help">
+            <br>
+            <small id="email-help" role="alert">Please enter a valid email address</small>
+        </div>
+
+
+        <div>
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message"></textarea>
+        </div>
+
+        <fieldset>
+            <legend>How did you hear about us?</legend>
+            
+            <div>
+                <input type="radio" id="social-media" name="referral" value="social-media">
+                <label for="social-media">Social Media</label>
+            </div>
+
+            <div>
+                <input type="radio" id="friend" name="referral" value="friend">
+                <label for="friend">Friend</label>
+            </div>
+
+            <div>
+                <input type="radio" id="other" name="other" value="other">
+                <label for="other">Other</label>
+            </div>
+        </fieldset>
+
+        <div>
+            <input type="checkbox" id="sign-me-up" name="sign-me-up">
+            <label for="sign-me-up">Sign me up for the newsletter</label>
+        </div>
+
+        <div>
+            <button>Submit</button>
+        </div>
+         
+        <div>
+            <h2>Need to reach us directly?</h2>
+
+            <p>
+                Email us at <a href="contact@example.com">contact@example.com</a>
+            </p>
+
+            <p>
+                Call us at (555) 867-5309</a>
+            </p>
+
+            <p>
+                Visit our office between 9am - 5pm, Monday through Friday
+            </p>
+        </div>
+    </form>
+
+    <footer>
+        <p>&copy; 2025 Earworm Inc. All rights reserved.</p>
+    </footer>
+    
+</body>
+
+</html>

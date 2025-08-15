@@ -1,0 +1,25 @@
+.sidebar {
+    /* max-width: 400px; */
+    border: 2px solid #111010;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cardhead {
+    padding: 16px 10px;
+    font-size: 24px;
+    color: #4a4a4a;
+    background-color: #d3d3d3;
+    border-bottom: 2px solid #000000;
+    text-align: left;
+}
+
+.list {
+    list-style-type: none;
+    padding: 15px 30px;
+    
+}
+
+.a:hover {
+    text-decoration: wavy;
+    color: #921370;
+}

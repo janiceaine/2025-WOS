@@ -1,0 +1,87 @@
+/* *{
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    display: flex;
+    min-height: 100vh;
+    min-width: 100%;
+
+}
+
+#root {
+    flex-grow: 1;
+    display: flex;
+    align-items: stretch;
+}   
+
+.App {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+    width: 100%;
+    border: 2px solid #000000;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex: 1;
+    gap: 30px;
+    padding: 20px;
+    flex-wrap: wrap;
+    margin-left: 15vw; /* Adjusted for better centering */
+/* } */
+
+
+/* Media queries for responsive margins */
+/* @media (max-width: 1200px) {
+    .main-content {
+        margin-left: 15vw;
+    }
+}
+
+@media (max-width: 900px) {
+    .main-content {
+        margin-left: 10vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-content {
+        margin-left: 5vw;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 400px) {
+    .main-content {
+        margin-left: 2vw;
+        gap: 15px;
+    }
+}  */
+
+
+
+/* header {
+    padding: 20px;
+    background-color: #72b2f3;
+    width: 100%;
+}
+
+footer {
+    padding: 20px;
+    background-color: #0d60b4;
+    color: white;
+} */
+

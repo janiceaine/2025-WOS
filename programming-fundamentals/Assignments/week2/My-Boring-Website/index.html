@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Web Page</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header
+        onmouseover="changeBgColor(this)"
+        onmouseout="revertBgColor(this)">
+        <div 
+        class="container">
+            <h1 id="header">My Boring Website</h1>
+        </div>
+    </header>
+
+    <section class="flex-container container">
+        <aside class="flex-column">
+            <div class="bordered text-center">
+                <h3 id="sidebar">Boring Fact</h3>
+                <p id="article">The standard width of a double-spaced line on U.S. letter-sized paper is about 0.34 inches.</p>
+            </div>
+
+            <div class="aside-btn">
+                <button onclick="removeButton(this)">Put me out of my misery.</button>
+            </div>
+        </aside>
+
+        <main class="main-content bordered" id="mainContent">
+            <div class="text-center">
+                <h2 id="title">The Sky Was Blue.</h2>
+                <p id="description">Clouds were present, but not particularly noteworthy. The sun was shining. The ground was beneath. People were generally doing what they were doing. One could observe various objects and individuals, each wth their own features and locations. The air was comprised of typical gases, and gravity continued to exert its influence.</p>
+            </div>
+
+            <div class="emojis">
+                <p class="emoticon" id="emojis">😑 😑 😑</p>
+            </div>
+
+            <!-- <div class="emojis">
+                <span class="emoticon" id="emoji1">😑</span>
+                <span class="emoticon" id="emoji2">😑</span>
+                <span class="emoticon" id="emoji3">😑</span>
+            </div> -->
+            <!-- Above Code Correspodes to the code commented out in JS -->
+
+        </main>
+    </section>
+    
+</body>
+</html>

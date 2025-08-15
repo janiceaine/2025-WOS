@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studio Aeon</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- header content section -->
+    <header>
+      <div class="flex-container container">
+        <h1>Studio Aeon</h1>
+
+        <nav>
+          <div class="flex-container">
+            <ul class="nav-list">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#games">Games</a></li>
+              <li><a href="#leaderboard">Leaderboard</a></li>
+              <li><a href="#Profile">Profile</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- main content section -->
+    <main class="container main-content">
+        <!-- main card content with new hero -->
+      <section class="flex-column">
+        <div class="card">
+          <div>
+            <h1 class="head-title">Zhara Vex is Coming</h1>
+            <img src="./images/zhara-vex.webp" alt="Zhara Vex" />
+
+            <div class="card-end">
+              <p class="new-hero-paragraph">
+                Meet <span id="new-hero">Neon Shard</span>'s newest hero.
+              </p>
+              <a href="read-more" class="read-more">Read more →</a>
+            </div>
+          </div>
+        </div>
+
+        <hr class="division" />
+
+        <!-- other heroes section -->
+        <div class="heroes">
+          <h2>Top Mains</h2>
+
+          <div class="flex-cards">
+            <div class="flex-list">
+              <h4>Juno Reyes</h4>
+
+              <img src="./images/juno-reyes.webp" alt="Juno Reyes" />
+
+              <div class="flex-heros">
+                <p class="AMP-paragraph"><span id="amp-count1">0</span> AMPS</p>
+                <button class="AMP-btn" onclick="amps('#amp-count1')">
+                  AMP
+                </button>
+              </div>
+            </div>
+
+            <div class="flex-list">
+              <h4>Kaika Moana</h4>
+              <img src="./images/kaika-moana.webp" alt="Kaika Moana" />
+
+              <div class="flex-heros">
+                <p class="AMP-paragraph"><span id="amp-count2">0</span> AMPS</p>
+                <button class="AMP-btn" onclick="amps('#amp-count2')">
+                  AMP
+                </button>
+              </div>
+            </div>
+
+            <div class="flex-list">
+              <h4>Rook Granger</h4>
+              <img src="./images/rook-granger.webp" alt="Rook Granger" />
+
+              <div class="flex-heros">
+                <p class="AMP-paragraph"><span id="amp-count3">0</span> AMPS</p>
+                <button class="AMP-btn" onclick="amps('#amp-count3')">
+                  AMP
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- aside content section -->
+      <aside class="flex-column">
+        <form>
+          <div class="newsletter">
+            <div class="level-newsletter">
+              <h3>Level Up Your Life</h3>
+              <p>
+                Join thousands of players in the most addictive web-based game
+                ever created.
+              </p>
+
+              <button class="join-btn" onclick="removeJoinButton(this)">
+                Join now
+              </button>
+            </div>
+
+            <hr class="division" />
+
+            <div class="preorder-newsletter">
+              <h3>Preorder Gridfall</h3>
+              <p>Enter your email to preorder your next obsession.</p>
+
+              <div class="preordering">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  id="email-input"
+                />
+                <button
+                  type="button"
+                  class="preorder-btn"
+                  onclick="emailValue()"
+                >
+                  Preorder
+                </button>
+              </div>
+            </div>
+
+            <hr class="division" />
+          </div>
+        </form>
+      </aside>
+    </main>
+  </body>
+</html>

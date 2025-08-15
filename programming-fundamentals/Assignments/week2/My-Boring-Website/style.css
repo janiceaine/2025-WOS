@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Patrick+Hand&family=Seymour+One&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: "Balsamiq Sans", sans-serif;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+}
+
+header {
+    background-color: rgb(55, 56, 56);
+    overflow: hidden;
+}
+
+h1 {
+    color: rgb(255, 255, 255);
+    font-size: 7rem;
+    margin: 40px;
+}
+
+.container {
+    width: 100%;
+}
+
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 30px;
+    width: 100%;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start ;
+    gap:1.5rem;
+}
+
+h3 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.main-content {
+    background-color: rgb(255, 255, 255);
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.emojis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 90px 0;
+}
+
+.emoticon {
+    font-size: 7rem;
+    margin: 0;
+    padding: 0;}
+
+.bordered {
+    border: 2px solid black;
+    padding: 10px;
+}
+
+aside {
+    flex: 1;
+}
+
+main {
+    flex: 2;
+}
+
+.text-center {
+    padding: 30px;
+}
+
+h2 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+p {
+    font-size: 2rem;
+    margin: 0;
+    padding: 30px 0;
+}
+
+.aside-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+button {
+    background-color: rgb(113, 161, 242);
+    color: black;
+    padding: 10px 20px;
+    border:0 2px rgb(6, 6, 6);
+    border-radius: 5px;
+    box-shadow: black 0px 0px 2px;
+    cursor: pointer;
+    height: 60px;
+    width: 100%;
+    font-size: 2rem;
+}
+
+button:hover {
+    background-color: rgb(255, 250, 104);
+    color: rgb(0, 0, 0);
+}
+
+/* tablet devices (768px) */
+@media (min-width: 48rem){
+    h1 {
+        color: navy;
+    }
+    .container {
+        width: 44rem;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 62rem) {
+    h1 {
+        color: orangered
+    }
+
+    .container {
+        width: 58 rem;
+    }
+}
+

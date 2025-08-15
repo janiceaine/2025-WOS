@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body {
+    background-color: darkslategray;
+}
+#container {
+    min-width: 400px;
+    margin:0 auto;
+    padding:20px;
+}
+h1 {
+    text-align: center;
+    color:whitesmoke;
+}
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+.feat {
+  background: cornflowerblue;
+  height: 250px;
+  width: 250px;
+}
+/* Animation class with duration, name, fill-mode, and timing-function */
+.a-fadeGrowIn {
+    animation-duration: 1.5s;
+    animation-name: a-fadeGrowIn;
+    animation-fill-mode: backwards;
+    animation-timing-function: ease-in-out;
+}
+
+/* Starting and ending keyframes with opacity, filter, and transform scale */
+@keyframes a-fadeGrowIn {
+    0% {
+        opacity: 0;
+        filter: grayscale(80%);
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        filter: grayscale(0%);
+        transform: scale(1);
+    }
+}
+
+/* Delay classes */
+.delay-1 {
+    animation-delay: 0.4s;
+}
+
+.delay-2 {
+    animation-delay: 0.6s;
+}
+
+.delay-3 {
+    animation-delay: 0.8s;
+}
+
+/* Handy links:
+- https://developer.mozilla.org/en-US/docs/Web/CSS/filter
+- https://css-tricks.com/a-handy-little-system-for-animated-entrances-in-css/
+*/

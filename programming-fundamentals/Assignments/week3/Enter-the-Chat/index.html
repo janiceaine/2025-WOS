@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter the Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <main class="container">
+        <h1>Enter the Chat</h1>
+
+        <form id="chatForm">
+            <div class="input-group">
+                <label for="username">Your Name</label>
+                <input type="text" id="username" name="username" placeholder="Scrybr User" class="input-field" required>
+            </div>
+
+            <div class="input-group">
+                <label for="class">Choose Your Class</label>
+                <select id="class" name="class" placeholder="--Select a Class--" class="input-field" required>
+                    <option value="" selected disabled class="placeholder-option">--Select a Class--</option>
+                    <option value="Bard">Bard</option>
+                    <option value="mage">Mage</option>
+                    <option value="rogue">Rogue</option>
+                    <option value="healer">Healer</option>
+                </select>
+            </div>
+
+            <button type="submit" onclick="enterChat()">Enter Chat</button>
+
+        </form>
+
+    </main>
+</body>
+</html>
