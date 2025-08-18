@@ -2,7 +2,7 @@
 string? Name = Console.ReadLine();
 Console.WriteLine($"Hello, " + Name + "!");
 
-Console.WriteLine($"There are " + Name.Length + " characters in your name.");
+Console.WriteLine($"There are " + Name?.Length + " characters in your name.");
 
 DateTime currentTime = DateTime.Now;
 

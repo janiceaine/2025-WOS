@@ -17,4 +17,3 @@
 // var studentAge = 22;            // Compiler infers 'studentAge' is an int
 // var averageScore = 92.75;       // Compiler infers 'averageScore' is a double
 // var hasPassed = true;
-
