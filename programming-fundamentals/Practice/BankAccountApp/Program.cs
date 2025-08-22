@@ -15,3 +15,6 @@ Console.WriteLine(bankAccount);
 
 bankAccount.Withdraw(6000);
 Console.WriteLine(bankAccount);
+
+
+// bankAccount._balance = 1000000; not accessible due to protection level
