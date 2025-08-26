@@ -1,0 +1,22 @@
+@* Views/Home/ShowInterpolationData.cshtml *@
+@{
+    ViewData["Title"] = "Razor Interpolation"; // Sets the page title
+    string developerName = "Jane Doe"; // Example variable for interpolation
+}
+
+<h1>Razor Interpolation Examples</h1>
+
+<p>Current Date: @DateTime.Now.ToShortDateString()</p>
+<p>Current Time: @DateTime.Now.ToLongTimeString()</p>
+<p>Sum of 10 + 5: @(10 + 5)</p>
+<p>Is 7 greater than 3? @(7 > 3)</p>
+<p>Product Name (from literal): @("My Awesome Gadget")</p>
+<p>Developed by: @developerName.ToUpper()</p> @* Using a variable for interpolation *@
+
+@{
+    // You can have multiple code blocks
+    int bonusPoints = 50;
+    Console.WriteLine($"Debugging from Razor: Bonus points are {bonusPoints}"); // This will print to server console, not browser
+}
+
+<p>Bonus Points: @bonusPoints</p>

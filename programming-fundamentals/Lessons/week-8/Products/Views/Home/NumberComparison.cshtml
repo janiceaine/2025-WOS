@@ -1,0 +1,14 @@
+@* Views/Home/NumberComparison.cshtml *@ 
+@{
+    ViewData["Title"] = "Number Comparison"; // Sets the page title
+    int num1 = 10;
+    int num2 = 20;
+}
+
+@if(num1 > num2){
+    <h1>@num1 is greater than @num2</h1>
+} else if (num1 < num2) {
+    <h1>@num1 is less than @num2</h1>
+} else {
+    <h1>@num1 is equal to @num2</h1>
+}

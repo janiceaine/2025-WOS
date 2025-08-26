@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using RouteWrangler.Models;
+using RazorDynamicDisplay.Models;
 
-namespace RouteWrangler.Controllers;
+namespace RazorDynamicDisplay.Controllers;
 
 public class HomeController : Controller
 {
@@ -13,11 +13,13 @@ public class HomeController : Controller
         _logger = logger;
     }
 
+    [HttpGet("")]
     public IActionResult Index()
     {
         return View();
     }
 
+    [HttpGet("privacy")]
     public IActionResult Privacy()
     {
         return View();
@@ -29,5 +31,11 @@ public class HomeController : Controller
         return View(
             new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier }
         );
+    }
+
+    [HttpGet("product-catalog")]
+    public IActionResult ProductCatalog()
+    {
+        return View();
     }
 }

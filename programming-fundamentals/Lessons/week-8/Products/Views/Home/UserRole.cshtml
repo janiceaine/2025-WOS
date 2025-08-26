@@ -1,0 +1,32 @@
+@* Views/Home/UserRole *@
+@{
+    ViewData["Title"] = "User Role";
+    string userRole = "Admin"; // Change this value to "User" or "Guest" to test different outputs
+    bool isWeekend = DateTime.Now.DayOfWeek == DayOfWeek.Saturday || DateTime.Now.DayOfWeek == DayOfWeek.Sunday;
+}
+@switch (userRole) {
+    case "Admin":
+        <h1>Welcome, Admin! You have full access.</h1>
+        break;
+    case "Editor":
+        <h1>Welcome, Editor! You can modify.</h1>
+        break;
+    case "Viewer":
+        <h1>Welcome, Viewer! Youb can view content.</h1>
+        break;
+    default:
+        <h1>Unknown role.</h1>
+        break;
+}
+ @if(DateTime.Now.Hour < 12){
+    <p style="color: blue">Good morning!</p>
+ } else if (DateTime.Now.Hour < 18) {
+    <p style="color: green">Good afternoon!</p>
+ } else {
+    <p style="color: purple">Good evening!</p>
+ }
+
+ <h2>Weekend Status:</h2>
+<p style="color:@(isWeekend ? "orange" : "gray")">
+    @(isWeekend ? "It's the weekend! Enjoy your time off." : "It's a weekday. Stay productive!")
+</p>
