@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-6">Welcome to my Portfoilo!</h1>
+
+    @if (ViewBag.IsFeatured != null && ViewBag.IsFeatured)
+    {
+        <section>
+            <div class="card container p-0" style="width: 18rem;">
+                <img src="~/images/gurl.jpg" class="card-img-top img-fluid shadow" style="max-height:400px"
+                    alt="profile-picture">
+                <div class="card-body">
+                    <h5 class="card-title">Janice Aine</h5>
+                    <p class="card-text">Welcome to my little corner of the web where code, food, and a bit of chaos meet.
+                    </p>
+                </div>
+            </div>
+            <aside class="p-1">
+                <h4>Featured Project</h4>
+                <p class="lead">Full Stack Developer | Creative Thinker | Problem Solver</p>
+            </aside>
+        </section>
+    }
+</div>

@@ -1,0 +1,34 @@
+@{
+    Layout = "_BlogLayOut";
+    ViewData["Title"] = "About";
+    var favoriteFood = "Steak"; 
+    var options = new List<string> { "Pizza", "Steak", "Sushi", "Burger" };
+}
+
+<div class="container py-5">
+    <h1 class="mb-4 text-center">Guess My Favorite Food</h1>
+    
+    <div class="card shadow-sm p-4 mx-auto" style="max-width:600px;">
+        <p class="text-center">Can you guess my favorite food? Click a button to choose!</p>
+
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-3">
+            @for (int i = 0; i < options.Count; i++)
+            {
+                var safeId = "option" + i; 
+                <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#@safeId" aria-expanded="false" aria-controls="@safeId">
+                    @options[i]
+                </button>
+            }
+        </div>
+
+        @for (int i = 0; i < options.Count; i++)
+        {
+            var safeId = "option" + i;
+            <div class="collapse text-center mb-2" id="@safeId">
+                <div class="card card-body @(options[i] == favoriteFood ? "bg-success text-white" : "bg-danger text-white")">
+                    @(options[i] == favoriteFood ? "🎉 Correct! My favorite food is " + favoriteFood + "!" : "❌ Nope, try again!")
+                </div>
+            </div>
+        }
+    </div>
+</div>
