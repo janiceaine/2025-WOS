@@ -1,0 +1,27 @@
+@model Product
+
+@{
+    ViewData["Title"] = "Passing Data to views";
+    var product = Model;
+}
+<h1 class="dispay-1">@ViewData["Title"]</h1>
+
+<h2>ViewData</h2>
+<p>Product Name: @ViewData["ProductName"]</p>
+<p>Price: $@ViewData["Price"]</p> 
+<p>Available: @ViewData["IsAvailable"]</p>
+<p>Rating: @((double)ViewData["Rating"])</p> 
+<p>Category: @ViewData["Category"]</p>
+
+<h2>ViewBag</h2>
+<p>Name: @ViewBag.UserName</p>
+<p>Age: @ViewBag.UserAge</p>
+<p>Premium Member: @ViewBag.IsPremiumMember</p>
+<p>Last Login: @ViewBag.LastLoginDate</p>
+
+<h2>Product Details</h2>
+<p><strong>Product Name: </strong>@Model.Name</p>
+<p>ID: @product.Id</p>
+<p>Price: @product.Price.ToString("C")</p> @* Use ToString("C") for currency formatting *@
+<p>Status: @(product.IsAvailable ? "In Stock" : "Out of Stock")</p>
+<p>Description: @product.Description</p>

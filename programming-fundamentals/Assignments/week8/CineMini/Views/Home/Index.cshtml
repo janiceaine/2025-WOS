@@ -1,0 +1,19 @@
+﻿@model Movie
+
+@{
+    ViewData["Title"] = "Home Page";
+    var movie = Model;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to CineMini</h1>
+
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+            <img src="/images/poster.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>CineMini</h5>
+            </div>
+        </div>
+    </div>
+</div>

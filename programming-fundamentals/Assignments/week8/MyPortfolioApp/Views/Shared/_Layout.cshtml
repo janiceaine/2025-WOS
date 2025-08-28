@@ -14,19 +14,21 @@
     <link rel="stylesheet" href="~/MyPortfolioApp.styles.css" asp-append-version="true" />
 </head>
 
-<body class="d-lex flex-column min-vh-100">
-    <header>
-        @await Html.PartialAsync("_NavBar")
-    </header>
-    <div class="container">
-        <main role="main" class="py-3 flex-grow-1">
-            @RenderBody()
-        </main>
+<body>
+    <div class="d-flex flex-column vh-100">
+        <header>
+            @await Html.PartialAsync("_NavBar")
+        </header>
+        <div class="container">
+            <main role="main" class="py-3 flex-grow-1">
+                @RenderBody()
+            </main>
+        </div>
+        @await Html.PartialAsync("_Footer")
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
     </div>
-    @await Html.PartialAsync("_Footer")
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

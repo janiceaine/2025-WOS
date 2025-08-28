@@ -1,0 +1,22 @@
+@model List<Movie>
+
+@{
+    ViewData["Title"] = "CineMini Movie Listings";
+    var movies = Model;
+}
+
+<h1>@ViewData["Title"] - @ViewBag.MovieCount Movies</h1>
+
+<p><em>Last updated - @DateTime.Now.ToShortDateString()</em></p>
+
+
+<ul class="row row-cols-1 row-cols-md-3 g-4 p-0">
+    @foreach (var movie in movies)
+    {
+        <li class="mt-4" style="list-style-type: none;">
+
+           @await Html.PartialAsync("_MovieCard", movie)
+
+        </li>
+    }
+</ul>

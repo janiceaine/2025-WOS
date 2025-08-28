@@ -1,0 +1,33 @@
+@model Movie
+
+@{
+    var movie = Model;
+}
+
+<div class="card h-100 mb-3"> @*style="max-width: 540px;*@
+    <div class="row g-0 h-100">
+        <div class="col-md-5">
+            <img src="@movie.ImagePath" class="img-fluid rounded-start h-100" style="object-fit: cover"
+                alt="@movie.Title">
+        </div>
+        <div class="col-md-7 d-flex align-items-stretch">
+            <div class="card-body w-100 bg-secondary position-relaive">
+                @if (movie.IsFeatured)
+                {
+                    <span class="badge rounded-pill bg-success position-absolute top-0 end-0 m-2">Featured</span>
+                }
+                @if (movie.IsClassic)
+                {
+                    <span class="badge rounded-pill bg-warning position-absolute top-0 end-0 m-2">Classic</span>
+                }
+                <div class="py-3">
+                    
+                    <h5 class="card-title mb-5"><a href="/details/@movie.Id" class="text-decoration-none">@movie.Title</a></h5>
+                    <p class="card-text"><small class="text-body-secondary">Genre: @movie.Genre</small></p>
+                    <p class="card-text"><small class="text-body-secondary">Release Year: @movie.ReleaseYear</small></p>
+                    <a href="/" class="">Back to movies...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

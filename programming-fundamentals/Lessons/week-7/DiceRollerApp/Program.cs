@@ -31,7 +31,6 @@ for (int i = 3; i <= 12; i++) // Start from 3 to compare with mostFrequent
 
 Console.WriteLine($"\n🎉 Most common total: {mostFrequent} ({totals[mostFrequent]} times)");
 
-
 // Helper method to get a valid number of rolls from the user
 static int GetRollCount()
 {

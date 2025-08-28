@@ -1,0 +1,17 @@
+@model Movie
+
+@{
+    ViewData["Title"] = "Movie Poster";
+    var movie = Model;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="card text-bg-dark">
+    <img src="@movie.ImagePath" class="card-img" alt="@movie.Title">
+    <div class="card-img-overlay">
+        <h5 class="card-title"> </h5>
+        <p class="card-text"> </p>
+        <p class="card-text"><small> </small></p>
+    </div>
+</div>
