@@ -1,0 +1,39 @@
+@using FormsAndSession.ViewModels
+@model RegisterFormViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div asp-validation-summary="All" class="form-text text-danger"></div>
+
+<div class="card shadow">
+    <div class="card-body">
+        <form asp-action="processRegisterForm" asp-controller="Account" method="post">
+            <div class="mb-3">
+                <label asp-for="Username" class="form-label">Username: </label>
+                <input asp-for="Username" class="form-control">
+                <span asp-validation-for="Username" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email: </label>
+                <input type="email" asp-for="Email" class="form-control">
+                <span asp-validation-for="Email" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password"></label>
+                <input type="text" asp-for="Password" class="form-control">
+                <span asp-validation-for="Password" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="PasswordConfirm" class="form-label"></label>
+                <input type="text" asp-for="PasswordConfirm" class="form-control">
+                <span asp-validation-for="PasswordConfirm" class="form-text text-danger"></span>
+            </div class="mb-3">
+            <div class="text-end">
+                <button class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+</div>

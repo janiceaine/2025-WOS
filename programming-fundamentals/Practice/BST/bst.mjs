@@ -150,9 +150,9 @@ class BinarySearchTree {
 
     out.push(node.value);
 
-    this.#inOrderRec(node.left, out);
+    this.#preOrderRec(node.left, out);
 
-    this.#inOrderRec(node.right, out);
+    this.#preOrderRec(node.right, out);
   }
 
   /**
@@ -175,9 +175,9 @@ class BinarySearchTree {
   #postOrderRec(node, out) {
     if (!node) return;
 
-    this.#inOrderRec(node.left, out);
+    this.#postOrderRec(node.left, out);
 
-    this.#inOrderRec(node.right, out);
+    this.#postOrderRec(node.right, out);
 
     out.push(node.value);
   }
@@ -247,7 +247,14 @@ class BinarySearchTree {
    */
   #removeRec(node, value) {
     // TODO: Standard delete logic; on two-children case, find inorder successor via #minNode(node.right).
-    throw new Error("not implemented");
+    // handle case where value does not exist
+    // if value is less than current node's value, recurse left
+    // if value is greater than current node's value, recurse right
+    // if value is equal to current node's value, we found the node
+    // Scenarios:
+    // 0 children: set parent's pointer to null
+    // 1 child: replace with only child
+    // 2 children: replace with in order successor (min of right subtree)
   }
 
   /**
@@ -364,5 +371,16 @@ class BinarySearchTree {
     }
   };
 }
+
+test("print tree diagram", () => {
+  const tree = new BinarySearchTree();
+  [10, 5, 15, 3, 7, 12, 18].forEach(v => tree.insert(v));
+
+  // Print sideways tree in console
+  tree.prettyPrint();
+
+  expect(tree.contains(10)).toBe(true);
+
+});
 
 export { BinarySearchTree };

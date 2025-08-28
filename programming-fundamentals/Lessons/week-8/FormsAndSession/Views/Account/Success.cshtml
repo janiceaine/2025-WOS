@@ -1,0 +1,11 @@
+@model SuccessViewModel
+
+@{
+    ViewData["Title"] = "Success!";
+    var vm = Model;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>Username: <strong>@vm.Username</strong></p>
+<p>Email: <strong>@vm.Email</strong></p>

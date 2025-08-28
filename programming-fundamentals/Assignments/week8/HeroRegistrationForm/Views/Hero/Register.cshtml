@@ -1,0 +1,49 @@
+@using HeroRegistrationForm.ViewModels
+@model HeroRegistrationViewModel
+
+@{
+    ViewData["Title"] = "Hero Registration Form";
+    var heroTypes = ViewBag.HeroTypes as List<string> ?? new List<string>();
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div asp-validation-summary="All"></div>
+
+<div class="container card shadow">
+    <div class="card-body">
+        <form asp-action="processHeroRegistration" asp-controller="Hero" method="post">
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Username: </label>
+                <input asp-for="Name" class="form-control">
+                <span asp-validation-for="Name" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="HeroType" class="form-label">Hero Type: </label>
+
+                <select class="form-select" asp-for="HeroType" aria-label="herotype">
+                    <option selected>Select Hero Type</option>
+                    @foreach(var type in heroTypes)
+                    {
+                     <option value="@type">@type</option>
+                    }
+                </select>
+
+                <span asp-validation-for="HeroType" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Level" class="form-label">Level: </label>
+                <input asp-for="Level" class="form-control">
+                <span asp-validation-for="Level" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email: </label>
+                <input type="email" asp-for="Email" class="form-control">
+                <span asp-validation-for="Email" class="form-text text-danger"></span>
+            </div>
+            <div class="text-end">
+                <button class="btn btn-warning" type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
