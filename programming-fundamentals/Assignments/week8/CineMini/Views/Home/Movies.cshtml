@@ -5,17 +5,36 @@
     var movies = Model;
 }
 
-<h1>@ViewData["Title"] - @ViewBag.MovieCount Movies</h1>
+<h1>@ViewData["Title"] - @ViewBag.MovieCount @(ViewBag.Genre == null ? "" : ViewBag.Genre) Movies</h1>
 
-<p><em>Last updated - @DateTime.Now.ToShortDateString()</em></p>
+<div class="d-flex">
+    <p><em>Last updated - @DateTime.Now.ToShortDateString()</em></p>
 
+    <div class="btn-group ms-auto mb-2">
+        <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Genres
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" asp-controller="Home" asp-action="movies" asp-route-genre="Action">Action</a></li>
+            <li><a class="dropdown-item" asp-controller="Home" asp-action="movies" asp-route-genre="Fantasy">Fantasy</a></li>
+            <li><a class="dropdown-item" asp-controller="Home" asp-action="movies" asp-route-genre="Sci-Fi">Sci-Fi</a></li>
+            <li><a class="dropdown-item" asp-controller="Home" asp-action="movies" asp-route-genre="Thriller">Thriller</a></li>
+            <li><a class="dropdown-item" asp-controller="Home" asp-action="movies" asp-route-genre="Drama">Drama</a></li>
+            <li><a class="dropdown-item" asp-controller="Home" asp-action="movies" asp-route-genre="Horror">Horror</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" asp-controller="Home" asp-action="movies">All Movies</a></li>
+        </ul>
+    </div>
+</div>
 
 <ul class="row row-cols-1 row-cols-md-3 g-4 p-0">
     @foreach (var movie in movies)
     {
         <li class="mt-4" style="list-style-type: none;">
 
-           @await Html.PartialAsync("_MovieCard", movie)
+            @await Html.PartialAsync("_MovieCard", movie)
 
         </li>
     }

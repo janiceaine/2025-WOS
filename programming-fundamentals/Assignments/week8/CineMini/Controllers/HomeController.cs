@@ -23,14 +23,17 @@ public class HomeController : Controller
     }
 
     [HttpGet("movies")]
-    public IActionResult Movies()
+    public IActionResult Movies(string? Genre)
     {
         var movies = GetMovies();
 
-        ViewBag.TheMovies = movies; //movies stored in the wViewBag
-        ViewBag.MovieCount = movies.Count;
+        var filterMovies = movies.Where(m => m.Genre == Genre).ToList(); // movies with specified Genre
 
-        return View(movies);
+        ViewBag.TheMovies = movies; //movies stored in the ViewBag
+        ViewBag.Genre = Genre;
+        ViewBag.MovieCount = Genre == null ? movies.Count : filterMovies.Count;
+
+        return View(Genre == null ? movies : filterMovies);
     }
 
     [HttpGet("")]
