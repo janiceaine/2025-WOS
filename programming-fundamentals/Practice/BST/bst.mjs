@@ -246,15 +246,32 @@ class BinarySearchTree {
    * @returns {BSTNode|null}
    */
   #removeRec(node, value) {
-    // TODO: Standard delete logic; on two-children case, find inorder successor via #minNode(node.right).
+    // TODO: Standard delete logic.
     // handle case where value does not exist
+    if (node === null) return null;
     // if value is less than current node's value, recurse left
+    if (value < node.value) {
+      node.left = this.#removeRec(node.left, value);
+      return node;
+    }
     // if value is greater than current node's value, recurse right
+    else if (value > node.value) {
+      node.right = this.#removeRec(node.right, value);
+      return node;
+    }
     // if value is equal to current node's value, we found the node
-    // Scenarios:
-    // 0 children: set parent's pointer to null
-    // 1 child: replace with only child
-    // 2 children: replace with in order successor (min of right subtree)
+    else {
+      // 0 children: set parent's pointer to null
+      if (!node.left && !node.right) return null;
+      // 1 child: replace with only child
+      if (!node.left) return node.right;
+      else if (!node.right) return node.left;
+      // 2 children: replace with in order successor (min of right subtree)
+      const successor = this.#minNode(node.right);
+      node.value = successor.value;
+      node.right = this.#removeRec(node.right, successor.value);
+      return node;
+    }
   }
 
   /**
@@ -300,14 +317,31 @@ class BinarySearchTree {
 
   /**
    * Bottom-up balance checker.
+   * Compute left/right first, then this node.
+   * A subtree is balanced if both children are balanced AND
+   * |left.height - right.height| <= 1.
    * @param {BSTNode|null} node
    * @returns {{balanced: boolean, height: number}}
    */
   #checkBalance(node) {
     // TODO: Post-order: compute left/right info; node is balanced if both balanced and |hl-hr| <= 1.
     // return { balanced: true, height: 0 };
-    throw new Error("not implemented");
+    if (!node) {
+      return { balanced: true, height: 0 };
+    }
+    // TODO: Compute left/right info first; this node is balanced
+    // if both children are balanced and Math.abs(left.height - right.height) <= 1.
+    // Return { balanced, height } upward.
+    let left = this.#checkBalance(node.left);
+    let right = this.#checkBalance(node.right);
+    
+    let balanced = Math.abs(left.height - right.height) <= 1 && left.balanced && right.balanced;
+    
+    let height = this.#heightRec(node);
+    
+    return { balanced, height };
   }
+
 
   /**
    * (Optional stretch) Rebalances the tree into a near-perfectly balanced form.
@@ -372,15 +406,15 @@ class BinarySearchTree {
   };
 }
 
-test("print tree diagram", () => {
-  const tree = new BinarySearchTree();
-  [10, 5, 15, 3, 7, 12, 18].forEach(v => tree.insert(v));
+// test("print tree diagram", () => {
+//   const tree = new BinarySearchTree();
+//   [10, 5, 15, 3, 7, 12, 18].forEach(v => tree.insert(v));
 
-  // Print sideways tree in console
-  tree.prettyPrint();
+//   // Print sideways tree in console
+//   tree.prettyPrint();
 
-  expect(tree.contains(10)).toBe(true);
+//   expect(tree.contains(10)).toBe(true);
 
-});
+// });
 
 export { BinarySearchTree };

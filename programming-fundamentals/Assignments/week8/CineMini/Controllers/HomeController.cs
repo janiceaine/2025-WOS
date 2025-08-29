@@ -17,9 +17,9 @@ public class HomeController : Controller
 
     private List<Movie> GetMovies()
     {
-        var json = System.IO.File.ReadAllText(movieFile);
-        var movies = JsonSerializer.Deserialize<List<Movie>>(json);
-        return movies ?? [];
+        var json = System.IO.File.ReadAllText(movieFile); // Reading movies.json file as text
+        var movies = JsonSerializer.Deserialize<List<Movie>>(json); //converting the json text into a list of movie objects
+        return movies ?? []; //returning the movies list or empty object
     }
 
     [HttpGet("movies")]
@@ -27,7 +27,7 @@ public class HomeController : Controller
     {
         var movies = GetMovies();
 
-        ViewBag.TheMovies = movies;
+        ViewBag.TheMovies = movies; //movies stored in the wViewBag
         ViewBag.MovieCount = movies.Count;
 
         return View(movies);
@@ -48,9 +48,9 @@ public class HomeController : Controller
     [HttpGet("details/{id}")]
     public IActionResult Details(int id)
     {
-        var movie = GetMovies().Find(m => m.Id == id);
+        var movie = GetMovies().Find(m => m.Id == id); //finding movie by given id
         if (movie == null)
-            return NotFound();
+            return NotFound(); //returns a 404 if movie is not found
         return View(movie);
     }
 

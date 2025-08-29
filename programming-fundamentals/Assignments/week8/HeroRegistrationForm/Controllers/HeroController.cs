@@ -28,6 +28,9 @@ public class HeroController : Controller
 
         if (!ModelState.IsValid)
         {
+            List<string> heroTypes = new List<string> { "Warrior", "Mage", "Rogue" };
+            ViewBag.HeroTypes = heroTypes;
+
             return View("Register", vm);
         }
 
@@ -48,3 +51,6 @@ public class HeroController : Controller
         return View();
     }
 }
+
+
+// Got correction and guidance from Tamara, Jenna, Jason, Janis and God
