@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Text.Json;
+using AspNetCoreGeneratedDocument;
 using CineMini.Models;
 using Microsoft.AspNetCore.Mvc;
 

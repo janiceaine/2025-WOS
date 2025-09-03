@@ -1,8 +1,8 @@
 using System.Diagnostics;
-using HeroRegistrationForm.Models;
 using Microsoft.AspNetCore.Mvc;
+using RetroGameLibrary.Models;
 
-namespace HeroRegistrationForm.Controllers;
+namespace RetroGameLibrary.Controllers;
 
 public class HomeController : Controller
 {
