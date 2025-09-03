@@ -124,7 +124,7 @@ var allMoviesByDirector = movies
 
 // Print the Title and ReleaseDate of all the movies found. If no movies are found, print a descriptive message.
 Console.WriteLine($"Movies by {userInput}: ");
-if (allMoviesByDirector.Any()) // I first used and intelli suggested Any() allMoviesByDirector.Count() == 0
+if (allMoviesByDirector.Any()) // I first used this and intelli suggested Any() allMoviesByDirector.Count() == 0
 {
     foreach (var movie in allMoviesByDirector)
     {
