@@ -9,6 +9,8 @@ public class Movie
     public DateOnly ReleaseDate { get; set; }
     public double Rating { get; set; }
     public int DurationInMinutes { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
     public override string ToString()
     {
@@ -18,5 +20,12 @@ Movie: {Title} ({ReleaseDate.ToString("MMMM d, yyyy")}), {DurationInMinutes} min
 Director: {Director}
 Genre: {Genre}
 Rating: {Rating}";
+    }
+
+    // updating this controller with a GetMovies method
+    public static List<Movie> GetMovies()
+    {
+        string filePath = "Data/movies.json";
+        return Serializer.DeserializeFromFile<List<Movie>>(filePath) ?? [];
     }
 }
