@@ -1,24 +1,26 @@
+using System.Threading.Tasks;
 using AlbumsApiCrud.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AlbumsApiCrud.Controllers;
 
 [ApiController]
-[Route("api/albums")]
-public class AlbumsController : ControllerBase
+[Route("api/async/albums")]
+public class AlbumsAsyncController : ControllerBase
 {
     private readonly AlbumContext _context;
 
-    public AlbumsController(AlbumContext context)
+    public AlbumsAsyncController(AlbumContext context)
     {
         _context = context;
     }
 
     // Getting all albums
     [HttpGet("")]
-    public ActionResult<List<Album>> GetAllAlbums()
+    public async Task<ActionResult<List<Album>>> GetAllAlbums()
     {
-        var albums = _context.Albums.ToList();
+        var albums = await _context.Albums.ToListAsync();
         if (albums.Count == 0)
         {
             return NotFound("No Albums Found");
@@ -28,9 +30,9 @@ public class AlbumsController : ControllerBase
 
     // Getting a single album by ID
     [HttpGet("{id}")]
-    public ActionResult<Album> GetOneAlbum(int id)
+    public async Task<ActionResult<Album>> GetOneAlbum(int id)
     {
-        var theAlbum = _context.Albums.Where(album => album.Id == id).FirstOrDefault();
+        var theAlbum = await _context.Albums.Where(album => album.Id == id).FirstOrDefaultAsync();
         if (theAlbum is null)
         {
             return NotFound("No Album was Found.");
@@ -40,25 +42,25 @@ public class AlbumsController : ControllerBase
 
     // Creating a new album
     [HttpPost("")]
-    public ActionResult<List<Album>> CreateAlbum([FromBody] Album newAlbum)
+    public async Task<ActionResult<List<Album>>> CreateAlbum([FromBody] Album newAlbum)
     {
-        _context.Albums.Add(newAlbum);
-        _context.SaveChanges();
+        await _context.Albums.AddAsync(newAlbum);
+        await _context.SaveChangesAsync();
 
-        _context.Albums.Add(newAlbum);
+        await _context.Albums.AddAsync(newAlbum);
         return CreatedAtAction(nameof(GetOneAlbum), new { id = newAlbum.Id }, newAlbum);
     }
 
     // Updating an album by ID
     [HttpPut("{id}")]
-    public IActionResult UpdateAlbum(int id, [FromBody] Album updatedAlbum)
+    public async Task<IActionResult> UpdateAlbum(int id, [FromBody] Album updatedAlbum)
     {
         if (id != updatedAlbum.Id)
         {
             return BadRequest("Album ID in the URL does not match the ID in the request body.");
         }
 
-        var maybeAlbum = _context.Albums.FirstOrDefault(album => album.Id == id);
+        var maybeAlbum = await _context.Albums.FirstOrDefaultAsync(album => album.Id == id);
         if (maybeAlbum is null)
         {
             return NotFound("Album not Found.");
@@ -71,15 +73,15 @@ public class AlbumsController : ControllerBase
         maybeAlbum.Genre = updatedAlbum.Genre;
         maybeAlbum.AlbumTitle = updatedAlbum.AlbumTitle;
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 
     // Deleting an album
     [HttpDelete("{id}")]
-    public IActionResult DeleteAlbum(int id)
+    public async Task<IActionResult> DeleteAlbum(int id)
     {
-        var albumToRemove = _context.Albums.FirstOrDefault(album => album.Id == id);
+        var albumToRemove = await _context.Albums.FirstOrDefaultAsync(album => album.Id == id);
 
         if (albumToRemove is null)
         {
@@ -87,12 +89,13 @@ public class AlbumsController : ControllerBase
         }
 
         _context.Albums.Remove(albumToRemove);
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 
     // Filter albums by Genre(Query String)
     [HttpGet("filter")]
-    public ActionResult FilterAlbum(string genre)
+    public async Task<ActionResult> FilterAlbum(string genre)
     {
         var query = _context.Albums.AsQueryable();
 
@@ -102,7 +105,7 @@ public class AlbumsController : ControllerBase
                 album.Genre.Contains(genre, StringComparison.OrdinalIgnoreCase)
             );
         }
-        var filteredAlbums = query.ToList();
+        var filteredAlbums = await query.ToListAsync();
         if (filteredAlbums.Count == 0)
         {
             return NotFound("No Albums Found matching this search criteria.");
@@ -112,7 +115,7 @@ public class AlbumsController : ControllerBase
 
     // Search Albums by Artist or Title(Query
     [HttpGet("search")]
-    public ActionResult SearchAlbum(string term)
+    public async Task<ActionResult> SearchAlbum(string term)
     {
         var query = _context.Albums.AsQueryable();
 
@@ -124,7 +127,7 @@ public class AlbumsController : ControllerBase
             );
         }
 
-        var foundAlbums = query.ToList();
+        var foundAlbums = await query.ToListAsync();
 
         if (foundAlbums.Count == 0)
         {

@@ -66,7 +66,7 @@ public class AlbumsController : ControllerBase
         }
 
         if (results.Count == 0)
-        {r
+        {
             return NotFound("No Albums found matching the search criteria.");
         }
         return Ok(results);

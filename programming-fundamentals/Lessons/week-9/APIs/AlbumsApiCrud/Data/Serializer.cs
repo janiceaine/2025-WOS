@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace AlbumsApiCrud.Classes;
+namespace AlbumsApiCrud.Data;
 
 public class Serializer
 {

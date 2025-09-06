@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using MovieApi.Classes;
+using MovieApi.Models;
 
 namespace MovieApi.Controllers;
 
@@ -9,7 +9,12 @@ namespace MovieApi.Controllers;
 public class MoviesController : ControllerBase
 {
     // private readonly List<Movie> _movies; // Replacing Readonly with Static
-    private static readonly List<Movie> _movies = Movie.GetMovies();
+    private readonly MovieContext _context;
+
+    public MoviesController(MovieContext context)
+    {
+        _context = context;
+    }
 
     // public MoviesController()
     // {
@@ -22,17 +27,18 @@ public class MoviesController : ControllerBase
     [HttpGet]
     public ActionResult<List<Movie>> GetAllMovies()
     {
-        if (_movies.Count == 0)
+        var movies = _context.Movies.ToList();
+        if (movies.Count == 0)
         {
             return NotFound("No movies found."); // Returns a 404 Not Found status code
         }
-        return Ok(_movies); // Returns a 200 OK status code with the movie list
+        return Ok(movies); // Returns a 200 OK status code with the movie list
     }
 
     [HttpGet("{id}")]
     public ActionResult<Movie> GetOneMovie(int id)
     {
-        var maybeMovie = _movies.Where(movie => movie.MovieId == id).FirstOrDefault();
+        var maybeMovie = _context.Movies.Where(movie => movie.Id == id).FirstOrDefault();
         if (maybeMovie is null)
         {
             return NotFound("No Movies Found.");
@@ -43,7 +49,7 @@ public class MoviesController : ControllerBase
     [HttpGet("genres/{genre}")]
     public ActionResult<List<Movie>> GetSpecificGenre(string genre)
     {
-        var filteredMovies = _movies.Where(movie => movie.Genre == genre);
+        var filteredMovies = _context.Movies.Where(movie => movie.Genre == genre);
         if (filteredMovies is null)
         {
             return NotFound("No Movies Found for that genre.");
@@ -56,7 +62,7 @@ public class MoviesController : ControllerBase
     [HttpGet("search")]
     public ActionResult<List<Movie>> Search(string? keyword, double? minRating)
     {
-        var query = _movies.AsQueryable();
+        var query = _context.Movies.AsQueryable();
 
         if (!string.IsNullOrEmpty(keyword))
         {
@@ -80,7 +86,7 @@ public class MoviesController : ControllerBase
     [HttpGet("filter")]
     public ActionResult FilterMovies(string? genre, double? minRating)
     {
-        var query = _movies.AsQueryable();
+        var query = _context.Movies.AsQueryable();
 
         if (!string.IsNullOrEmpty(genre))
         {
@@ -109,30 +115,39 @@ public class MoviesController : ControllerBase
     [HttpPost("")]
     public ActionResult<Movie> CreateMovie([FromBody] Movie newMovie)
     {
-        var nextId = _movies.Count == 0 ? 1 : _movies.Max(m => m.MovieId) + 1;
-        newMovie.MovieId = nextId;
+        // var nextId = _context.Movies.Count() == 0 ? 1 : _context.Movies.Max(m => m.Id) + 1;
+        // newMovie.Id = nextId;
 
-        _movies.Add(newMovie);
-        return CreatedAtAction(nameof(GetOneMovie), new { id = nextId }, newMovie);
+        _context.Movies.Add(newMovie);
+        _context.SaveChanges();
+        return CreatedAtAction(nameof(GetOneMovie), new { id = newMovie.Id }, newMovie);
     }
 
     [HttpPut("{id}")]
     public IActionResult UpdateMovie(int id, [FromBody] Movie updatedMovie)
     {
-        // 1. Check if the provided ID from the URL matches the ID in the request body
-        if (id != updatedMovie.MovieId)
+        // Check if the provided ID from the URL matches the ID in the request body
+        if (id != updatedMovie.Id)
         {
             return BadRequest("Movie ID in the URL does not match the ID in the request body.");
         }
 
-        var maybeMovie = _movies.FirstOrDefault((m) => m.MovieId == id);
+        var maybeMovie = _context.Movies.FirstOrDefault((m) => m.Id == id);
         if (maybeMovie is null)
         {
             return NotFound("Movie not found.");
         }
 
-        var movieIndex = _movies.IndexOf(maybeMovie);
-        _movies[movieIndex] = updatedMovie;
+        // Update the properties of the found movie
+        maybeMovie.Title = updatedMovie.Title;
+        maybeMovie.Director = updatedMovie.Director;
+        maybeMovie.Genre = updatedMovie.Genre;
+        maybeMovie.ReleaseDate = updatedMovie.ReleaseDate;
+        maybeMovie.Rating = updatedMovie.Rating;
+        maybeMovie.DurationInMinutes = updatedMovie.DurationInMinutes;
+        maybeMovie.UpdatedAt = DateTime.UtcNow;
+
+        _context.SaveChanges();
 
         return NoContent();
     }
@@ -140,14 +155,14 @@ public class MoviesController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult DeleteMovie(int id)
     {
-        var movieToRemove = _movies.FirstOrDefault(m => m.MovieId == id);
+        var movieToRemove = _context.Movies.FirstOrDefault(m => m.Id == id);
 
         if (movieToRemove is null)
         {
             return NotFound("Movie not found.");
         }
 
-        _movies.Remove(movieToRemove);
+        _context.Remove(movieToRemove);
         return NoContent();
     }
 }
