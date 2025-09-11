@@ -1,0 +1,42 @@
+@using BackLogBoss.ViewModels
+@model GameViewModel
+@{
+    ViewData["Title"] = "Edit Game";
+    var game = Model;
+}
+<h1 class="dispaly-4">@ViewData["Title"]</h1>
+
+<div class="card shadow">
+    <form asp-action="UpdateGame" asp-controller="Games" asp-route-id="@game.Id" method="post">
+        @* <input type="hidden" asp-for="Id" value="=@game.Id"> *@
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col">
+                    <label asp-for="Title" class="form-label"></label>
+                    <input asp-for="Title" class="form-control">
+                    <span asp-validation-for="Title" class="form-text text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Platform" class="form-label"></label>
+                    <input asp-for="Platform" class="form-control">
+                    <span asp-validation-for="Platform" class="form-text text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Notes" class="form-label">Notes</label>
+                <textarea asp-for="Notes" class="form-control" style="height: 7rem;"></textarea>
+            </div>
+            <div class="mb-3">
+                <div class="form-check form-switch">
+                    <input type="checkbox" class="form-check-input" role="switch" asp-for="IsComplete">
+                    <label asp-for="IsComplete" class="form-check-label">Game Completed</label>
+                    <span asp-validation-for="IsComplete" class="form-text text-danger"></span>
+                </div>
+            </div>
+            <div class="text-end">
+                <a href="/games/@game.Id" class="btn btn-sm btn-outline-primary">Cancel</a>
+                <button type="submit" class="btn btn-sm btn-primary">Edit Game</button>
+            </div>
+        </div>
+    </form>
+</div>

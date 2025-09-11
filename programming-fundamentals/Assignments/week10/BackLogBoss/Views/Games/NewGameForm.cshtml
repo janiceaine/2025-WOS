@@ -1,0 +1,34 @@
+@model GameViewModel
+@{
+    ViewData["Title"] = "Add a New Game";
+    var game = Model;
+}
+<h1 class="dispaly-4">@ViewData["Title"]</h1>
+
+<div class="card shadow">
+    <form asp-action="Create" asp-controller="Games" method="post">
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col">
+                    <label asp-for="Title" class="form-label"></label>
+                    <input asp-for="Title" class="form-control">
+                    <span asp-validation-for="Title" class="form-text text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Platform" class="form-label"></label>
+                    <input asp-for="Platform" class="form-control">
+                    <span asp-validation-for="Platform" class="form-text text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="IsComplete" class="form-label">Notes</label>
+                <textarea asp-for="Notes" class="form-control" style="height: 7rem;"></textarea>
+                <span asp-validation-for="Notes" class="form-text text-danger"></span>
+            </div>
+            <div class="text-end">
+                <a href="/games/@game.Id" class="btn btn-sm btn-outline-primary">Cancel</a>
+                <button type="submit" class="btn btn-sm btn-primary">Add Game</button>
+            </div>
+        </div>
+    </form>
+</div>

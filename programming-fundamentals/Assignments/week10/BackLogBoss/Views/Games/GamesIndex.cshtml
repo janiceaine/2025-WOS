@@ -1,0 +1,36 @@
+@model GamesIndexViewModel
+
+@{
+    ViewData["Title"] = "All Games";
+    var games = Model;
+}
+
+<h1 class="display-4">All Games</h1>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th style="width: 40%">Title</th>
+            <th>Platform</th>
+            <th>Completed?</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var game in Model.Games)
+        {
+            <tr>
+                <td class="align-middle">@game.Title</td>
+                <td class="align-middle">@game.Platform</td>
+                <td class="align-middle">@(game.IsComplete ? "Yes" : "No")</td>
+                <td class="d-flex align-items-center gap-2">
+                    <a class="btn btn-sm btn-primary" href="/games/@game.Id">View</a>
+                    <a class="btn btn-sm btn-warning" href="/games/@game.Id/edit">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="/games/@game.Id/delete">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

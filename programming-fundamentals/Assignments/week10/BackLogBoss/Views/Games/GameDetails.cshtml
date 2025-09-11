@@ -1,0 +1,32 @@
+@model GameViewModel
+
+@{
+    ViewData["Title"] = "Game Details";
+    var game = Model;
+}
+
+<h1 class="display-1">@ViewData["Title"]</h1>
+
+<div class="card shadow">
+    <div class="card-body">
+        <h3 class="card-title">@game.Title</h3>
+        <p>
+            <strong>Platform: </strong> @(game.Platform) <br />
+            <strong>Notes: </strong><br /> @(game.Notes)
+        </p>
+        @if (game.IsComplete)
+        {
+            <p class="text-success fw-semibold"><em>This game has been completed.</em></p>
+        }
+        else
+        {
+            <p class="text-warning fw-semibold"><em>This game is still in progress...</em></p>
+        }
+        
+    </div>
+    <div class="card-footer text-end">
+        <a href="/games" class="btn btn-sm btn-primary">Back to List</a>
+        <a href="/games/@game.Id/edit" class="btn btn-sm btn-warning">Edit</a>
+        <a href="/games/@game.Id/delete" class="btn btn-sm btn-danger">Delete</a>
+    </div>
+</div>
