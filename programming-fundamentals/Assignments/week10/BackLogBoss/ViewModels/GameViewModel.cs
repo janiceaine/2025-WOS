@@ -18,6 +18,6 @@ public class GameViewModel()
     public bool IsComplete { get; set; }
 
     [Required(ErrorMessage = "Notes are Required.")]
-    [MinLength(5, ErrorMessage = "Notes must be atleast 2 characters")]
+    [MinLength(5, ErrorMessage = "Notes must be atleast 5 characters")]
     public string Notes { get; set; } = string.Empty;
 }
