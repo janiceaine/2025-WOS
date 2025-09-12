@@ -1,0 +1,51 @@
+<style>
+    .navbar-nav .nav-item:not(:last-child) .nav-link::after {
+        content: "|";
+        margin-left: 0.5rem;
+        color: #ccc;
+    }
+
+    .navbar-nav .nav-link {
+        text-decoration: underline;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container border-bottom" style="border-color: #ccc;">
+        <a class="navbar-brand" href="/">The Vinyl Countdown</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+
+                @if (Context.Session.GetInt32(key: "userId") is not null)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Albums" asp-action="AlbumsIndex">All Albums</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Albums" asp-action="NewAlbumsForm">Add Album</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Albums" asp-action="MyAlbums">My Albums</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Vinyl" asp-action="ConfirmLogout">Log out</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Vinyl" asp-action="RegisterForm">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Vinyl" asp-action="Login">Login</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

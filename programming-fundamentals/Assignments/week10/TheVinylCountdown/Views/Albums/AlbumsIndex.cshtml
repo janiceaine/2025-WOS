@@ -1,0 +1,28 @@
+@model AlbumsIndexViewModel
+
+@{
+    ViewData[index: "Title"] = "All Albums";
+}
+
+<h1 class="display-4">All Albums</h1>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th style="width: 40%">Title</th>
+            <th>Artist</th>
+            <th>Uploaded By</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(AlbumsRowViewModel album in Model.Albums)
+        {
+            <tr>
+                <td class="align-middle">@album.Title</td>
+                <td class="align-middle">@album.Artist</td>
+                <td class="align-middle">@album.UploadedBy</td>
+            </tr>
+        }
+    </tbody>
+</table>

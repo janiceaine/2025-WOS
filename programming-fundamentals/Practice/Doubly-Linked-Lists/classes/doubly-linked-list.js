@@ -152,21 +152,23 @@ class DoublyLinkedList {
    * @complexity O(1)
    */
   insertBefore(node, val) {
-    // TODO:
-    // 1. Check if the node is null or undefined; if so, do nothing.
-    // 2. If the node is the head of the list, create a new node and update head accordingly.
-    // 3. Otherwise, create a new node and properly link it between node.prev and node.
-    if (node != null) {
-      const newNode = new DLLNode(val);
-      if (node === this.head) {
-        insertAtHead(newNode);
-      } else {
-        newNode.prev = node.prev;
-        newNode.next = node;
-        node.prev.next = newNode;
-        newNode.prev = newNode;
-      }
+    if (!node) return;
+    const newNode = new DLLNode(val);
+
+    if (node === this.head) {
+      newNode.next = node;
+      node.prev = newNode;
+      this.head = newNode;
+      this.length++;
+      return;
     }
+
+    const prev = node.prev;
+    if (prev) prev.next = newNode;
+    newNode.prev = prev;
+    newNode.next = node;
+    node.prev = newNode;
+    this.length++;
   }
 
   /**
@@ -177,12 +179,83 @@ class DoublyLinkedList {
    * @complexity O(1)
    */
   insertAfter(node, val) {
-    // TODO:
-    // 1. Check if the node is null or undefined; if so, do nothing.
-    // 2. If the node is the tail of the list, create a new node and update tail accordingly.
-    // 3. Otherwise, create a new node and properly link it between node and node.next.
-    if (node != null) {
+    if (!node) return;
+    const newNode = new DLLNode(val);
+
+    if (node === this.tail) {
+      node.next = newNode;
+      newNode.prev = node;
+      this.tail = newNode;
+      this.length++;
+      return;
     }
+
+    const next = node.next;
+    newNode.next = next;
+    newNode.prev = node;
+    node.next = newNode;
+    if (next) next.prev = newNode;
+    this.length++;
+  }
+
+  /**
+   * Removes the first node with the specified value from the list.
+   * @param {any} val - The value to remove.
+   * @returns {boolean} True if a node was removed; otherwise, false.
+   * @complexity O(n)
+   */
+  remove(val) {
+    // TODO:
+    // 1. Find the node containing the given value.
+    let node = this.find(val);
+    // 2. If not found, return false.
+    if (node == null) return false;
+    // 3. If the node is the only node (head and tail), clear head and tail.
+    if (this.length == 1) {
+      this.head = null;
+      this.tail = null;
+      this.length--;
+      return true;
+    }
+    // 4. If the node is the head, update head and fix links.
+    if (node == this.head) {
+      this.removeHead();
+      return true;
+    }
+    // 5. If the node is the tail, update tail and fix links.
+    if (node == this.tail) {
+      this.removeTail();
+      return true;
+    }
+    // 6. Otherwise, unlink the node from its previous and next nodes.
+    node.prev.next = node.next;
+    node.next.prev = node.prev;
+    // 7. Decrement length and return true.
+    this.length--;
+    return true;
+  }
+
+  /**
+   * Reverses the order of the nodes in the list in-place.
+   * @returns {void}
+   * @complexity O(n)
+   */
+  reverse() {
+    // TODO:
+    // 1. If the list is empty or has one node, do nothing.
+    if (this.isEmpty() || this.length == 1) return;
+    // 2. Iterate through each node, swapping its prev and next pointers.
+    let runner = this.head;
+    while (runner) {
+      let temp = runner.next;
+      runner.next = runner.prev;
+      runner.prev = temp;
+      runner = temp;
+    }
+    // 3. After iteration, swap the head and tail references.
+    let temp = this.head;
+    this.head = this.tail;
+    this.tail = temp;
   }
 
   /**
