@@ -1,14 +1,18 @@
 @model RegisterFormViewModel
 
 @{
-    ViewData["Title"] = "Register";
+    ViewData[index: "Title"] = "Register";
+    ViewData[index: "BackgroundClass"] = "bg-vinyl";
 }
 
 <h1 class="display-2">Register</h1>
 
 <div asp-validation-summary="All" class="text-danger"></div>
 
-<div class="card shadow">
+<div class="card shadow-lg" style="max-width: 720px">
+    <div class="text-center">
+        <img src="/images/transparent-logo.svg" alt="logo" class="img-fluid" style="max-width: 220px;">
+    </div>
     <div class="card-body">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <form asp-controller="Vinyl" asp-action="ProcessRegister" method="post">

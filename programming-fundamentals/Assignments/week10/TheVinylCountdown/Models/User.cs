@@ -12,6 +12,8 @@ public class User
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
-    // Navigation Property
+    // Navigation Properties
     public List<Album> Albums { get; set; } = [];
+
+    public List<Like> Likes { get; set; } = [];
 }

@@ -22,6 +22,14 @@ public class AlbumsController : Controller
     [HttpGet]
     public IActionResult AlbumsIndex()
     {
+        // getting current user's id fron session
+        var userId = HttpContext.Session.GetInt32(SessionUserId);
+        // Redirect to Login if user is not logged in
+        if (userId is not int uid)
+        {
+            return RedirectToAction("LoginForm", "Vinyl", new { message = "not-authenticated" });
+        }
+
         // Displays all Albums in a list
         var vm = new AlbumsIndexViewModel
         {
@@ -34,6 +42,8 @@ public class AlbumsController : Controller
                     Title = a.Title,
                     Artist = a.Artist,
                     UploadedBy = a.User!.UserName,
+                    LikeCount = a.Likes.Count,
+                    LikedByMe = a.Likes.Any((like) => like.UserId == uid),
                 })
                 .ToList(),
         };
@@ -86,7 +96,7 @@ public class AlbumsController : Controller
         // getting current user's id fron session
         var userId = HttpContext.Session.GetInt32(SessionUserId);
         // Redirect to Login if user is not logged in
-        if (userId is null)
+        if (userId is not int uid)
         {
             return RedirectToAction("LoginForm", "Vinyl", new { message = "not-authenticated" });
         }
@@ -97,13 +107,66 @@ public class AlbumsController : Controller
             .OrderByDescending(a => a.CreatedAt) // Show newest first
             .Select(a => new AlbumsRowViewModel
             {
+                Id = a.Id,
                 Title = a.Title,
                 Artist = a.Artist,
                 UploadedBy = a.User!.UserName,
+                LikeCount = a.Likes.Count,
+                LikedByMe = a.Likes.Any((like) => like.UserId == uid),
             })
             .ToList();
 
         // Returning a filtered view of AlbumsIndex
         return View("AlbumsIndex", new AlbumsIndexViewModel { Albums = albums });
+    }
+
+    [HttpPost("{id}/like")]
+    [ValidateAntiForgeryToken]
+    public IActionResult Like(int id)
+    {
+        // getting current user's id fron session
+        var userId = HttpContext.Session.GetInt32(SessionUserId);
+        // Redirect to Login if user is not logged in
+        if (userId is not int uid)
+        {
+            return RedirectToAction("LoginForm", "Vinyl", new { message = "not-authenticated" });
+        }
+
+        // check if user already liked this post
+        var alreadyLiked = _context.Likes.Any(like => like.UserId == uid && like.AlbumId == id);
+        if (!alreadyLiked)
+        {
+            var newLike = new Like { UserId = uid, AlbumId = id };
+            _context.Likes.Add(newLike);
+            _context.SaveChanges();
+        }
+        // This sends the user back to where they came from(the same page they are on)
+        return Redirect(Request.Headers["Referer"].ToString());
+        // return RedirectToAction("AlbumsIndex");
+    }
+
+    [HttpPost("{id}/unlike")]
+    [ValidateAntiForgeryToken]
+    public IActionResult Unlike(int id)
+    {
+        // getting current user's id fron session
+        var userId = HttpContext.Session.GetInt32(SessionUserId);
+        // Redirect to Login if user is not logged in
+        if (userId is not int uid)
+        {
+            return RedirectToAction("LoginForm", "Vinyl", new { message = "not-authenticated" });
+        }
+
+        // Find specific like to remove
+        var likeToRemove = _context.Likes.FirstOrDefault((l) => l.UserId == uid && l.AlbumId == id);
+
+        if (likeToRemove is not null)
+        {
+            _context.Likes.Remove(likeToRemove);
+            _context.SaveChanges();
+        }
+        // This sends the user back to where they came from(the same page they are on)
+        return Redirect(Request.Headers["Referer"].ToString());
+        // return RedirectToAction("AlbumsIndex");
     }
 }

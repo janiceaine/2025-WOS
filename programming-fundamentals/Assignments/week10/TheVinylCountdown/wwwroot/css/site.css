@@ -20,3 +20,32 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.bg-welcome {
+  background-image: url('/images/colored-logo.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.bg-login {
+  background-image: url('/images/vinyl.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.bg-vinyl {
+  background-image: url('/images/vinyl.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.logo-small {
+  width: 300px; /* or whatever size fits your card */
+  height: auto;
+}

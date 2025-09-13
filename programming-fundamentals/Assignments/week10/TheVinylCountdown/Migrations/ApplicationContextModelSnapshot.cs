@@ -54,6 +54,35 @@ namespace TheVinylCountdown.Migrations
                     b.ToTable("Albums");
                 });
 
+            modelBuilder.Entity("TheVinylCountdown.Models.Like", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AlbumId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlbumId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Likes");
+                });
+
             modelBuilder.Entity("TheVinylCountdown.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -96,9 +125,35 @@ namespace TheVinylCountdown.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TheVinylCountdown.Models.Like", b =>
+                {
+                    b.HasOne("TheVinylCountdown.Models.Album", "Album")
+                        .WithMany("Likes")
+                        .HasForeignKey("AlbumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TheVinylCountdown.Models.User", "User")
+                        .WithMany("Likes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Album");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TheVinylCountdown.Models.Album", b =>
+                {
+                    b.Navigation("Likes");
+                });
+
             modelBuilder.Entity("TheVinylCountdown.Models.User", b =>
                 {
                     b.Navigation("Albums");
+
+                    b.Navigation("Likes");
                 });
 #pragma warning restore 612, 618
         }

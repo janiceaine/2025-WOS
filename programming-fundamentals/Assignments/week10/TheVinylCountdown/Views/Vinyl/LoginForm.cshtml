@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Login";
     var error = Model.Error;
+    ViewData[index: "BackgroundClass"] = "bg-vinyl";
 }
 
 <h1 class="display-2">Login</h1>
@@ -16,9 +17,15 @@
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<div class="card shadow">
-    <div class="card-body">
-        <form asp-action="ProcessLoginForm" asp-controller="Vinyl" method="post">
+<div class="card p-3 shadow-lg" style="max-width: 720px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="/images/transparent-logo.svg" alt="logo" class="img-fluid me-3" style="max-width: 220px;">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h2 class="card-title">Log In</h2>
+                <form asp-action="ProcessLoginForm" asp-controller="Vinyl" method="post">
             <div class="mb-3">
                 <label asp-for="Email" class="form-label">Email<span style="color: red;">*</span>:</label>
                 <input asp-for="Email" class="form-control" />
@@ -33,5 +40,7 @@
                 <button type="submit" class="btn btn-primary">Log in</button>
             </div>
         </form>
+            </div>
+        </div>
     </div>
 </div>
