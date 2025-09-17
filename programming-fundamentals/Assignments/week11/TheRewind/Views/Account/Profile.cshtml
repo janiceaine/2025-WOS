@@ -1,0 +1,20 @@
+@model UserMovieStatsViewModel
+
+@{
+    ViewData["Title"] = "Profile";
+    var movie = Model;
+}
+
+<h1 class="display-4">Profile</h1>
+
+<div class="card" style="max-width: 640px;">
+  <div class="card-header">
+    Username: @movie.UserName
+  </div>
+  <div class="card-body">
+    <h5>E-mail: @movie.Email</h5>
+    <br />
+    <p class="card-text">Movies added: @movie.MovieCount</p>
+    <p class="card-text">Movies rated: @movie.MoviesRated</p>
+  </div>
+</div>

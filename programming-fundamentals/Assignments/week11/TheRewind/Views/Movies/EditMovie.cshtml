@@ -1,0 +1,41 @@
+@model MovieFormViewModel
+
+@{
+    ViewData[index: "Title"] = "Edit Movie";
+    MovieFormViewModel? movie = Model;
+}
+
+<h1 class="display-2">Edit Movie</h1>
+
+<div class="card shadow-lg" style="max-width: 900px;">
+    <form asp-controller="Movies" asp-action="EditProcess" asp-route-id="@Model.Id" method="post">
+        <div class="card-body">
+            <div class="row mt-2 ms-3">
+                <div class="row">
+                    <label asp-for="Title" class="form-label"></label>
+                    <input asp-for="Title" class="form-control">
+                    <span asp-validation-for="Title" class="form-text text-danger"></span>
+                </div>
+                <div class="row">
+                    <label asp-for="Genre" class="form-label"></label>
+                    <input asp-for="Genre" class="form-control">
+                    <span asp-validation-for="Genre" class="form-text text-danger"></span>
+                </div>
+                <div class="row">
+                    <label asp-for="ReleaseDate" class="form-label"></label>
+                    <input asp-for="ReleaseDate" class="form-control">
+                    <span asp-validation-for="ReleaseDate" class="form-text text-danger"></span>
+                </div>
+                <div class="row">
+                    <label asp-for="Description" class="form-label">Description</label>
+                    <textarea asp-for="Description" class="form-control" style="height: 7rem;"></textarea>
+                    <span asp-validation-for="Description" class="form-text text-danger"></span>
+                </div>
+            </div>
+            <div class="text-end m-3">
+                <a href="/movies/@movie.Id" class="btn btn-sm btn-outline-primary me-2">Cancel</a>
+                <button type="submit" class="btn btn-sm btn-primary">Edit Movie</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,22 @@
+@model ConfirmDeleteViewModel
+
+@{
+    ViewData["Title"] = "Confirm Delete";
+    var movie = Model;
+}
+
+<h1 style="color: crimson;">@ViewData["Title"]</h1>
+
+<div class="card shadow">
+    <form asp-action="DeleteMovie" asp-controller="Movies" asp-route-id="@movie.Id" method="post">
+        <input type="hidden" asp-for="Id" value="@movie.Id">
+        <div class="card-body">
+            <p class="display-4">Are you sure you want to delete @movie.Title?</p>
+            <p>This action is not reversible.</p>
+        </div>
+        <div class="card-footer text-end">
+            <a href="/movies/@movie.Id" class="btn btn-outline-danger me-2">Cancel</a>
+            <button type="submit" class="btn btn-danger">Delete Movie</button>
+        </div>
+    </form>
+</div>
