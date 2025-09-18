@@ -1,0 +1,26 @@
+@model JokesRowViewModel
+
+@{
+    var joke = Model;
+}
+
+<div class="card d-flex flex-column h-100 mb-3" style="min-height: 100%;">
+    <form asp-controller="Jokes" asp-action="CreateJoke" method="post" class="d-flex flex-column h-100">
+        <div class="card-body flex-grow-1">
+            <figure>
+                <p>@joke.Setup</p>
+                <p>@joke.Punchline</p>
+                <figcaption class="blockquote-footer text-end">
+                    Dad: @joke.UploadedBy
+                    <p>Added @joke.CreateDate</p>
+                </figcaption>
+            </figure>
+        </div>
+        <div class="card-footer mt-auto">
+            <div class="d-flex justify-content-between align-items-center">
+                <p class="mb-0">@joke.AverageRating groans</p>
+                <a class="btn btn-sm btn-primary" href="/jokes/@joke.Id">View</a>
+            </div>
+        </div>
+    </form>
+</div>

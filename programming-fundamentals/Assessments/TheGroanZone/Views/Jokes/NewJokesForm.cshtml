@@ -1,0 +1,33 @@
+@model JokeFormViewModel
+
+@{
+    ViewData[index: "Title"] = "Add a Dad Joke";
+    var joke = Model;
+}
+
+<h1 class="display-2">Add a Dad Joke</h1>
+
+<div class="card" style="max-width: 800px;">
+    <form asp-controller="Jokes" asp-action="CreateJoke" asp-route-id="@Model.Id" method="post">
+        <div class="m-3">
+            <div class="row mb-3">
+                <label asp-for="Setup" class="col-2 col-form-label">Setup:</label>
+                <div class="col-sm-10">
+                    <textarea asp-for="Setup" class="form-control" style="height: 7rem"></textarea>
+                    <span asp-validation-for="Setup" class="form-text text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="Punchline" class="col-2 col-form-label">Punchline:</label>
+                <div class="col-sm-10">
+                    <textarea asp-for="Punchline" class="form-control" style="height: 7rem"></textarea>
+                    <span asp-validation-for="Punchline" class="form-text text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="text-end m-3">
+            <a href="/jokes/@joke.Id" class="btn btn-sm btn-outline-primary me-2">Cancel</a>
+            <button type="submit" class="btn btn-sm btn-primary">Add Dad Joke</button>
+        </div>
+    </form>
+</div>

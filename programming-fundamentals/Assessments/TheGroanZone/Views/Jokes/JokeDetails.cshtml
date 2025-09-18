@@ -1,0 +1,50 @@
+@using Microsoft.AspNetCore.Http
+@model JokeFormViewModel
+
+@{
+    ViewData[index: "Title"] = "Joke Details";
+    var joke = Model;
+}
+
+<h1 class="display-1">@ViewData[index: "Title"]</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-body">
+                <p>
+                    <strong>Setup: </strong> @(joke.Setup)<br />
+                    <br />
+                    <strong>Punchline: </strong> @(joke.Punchline)
+                </p>
+            </div>
+
+            @if (Context.Session.GetInt32("userId") == joke.UserId)
+            {
+                <div class="card-footer text-end">
+                    <a href="/jokes" class="btn btn-sm btn-primary">Back to List</a>
+                    <a href="/jokes/@joke.Id/edit" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="/jokes/@joke.Id/delete" class="btn btn-sm btn-danger">Delete</a>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow mb-3">
+            <div class="card-body">
+                <h2 class="card-title">Stats</h2>
+                <p>
+                    <strong>Average Groans:</strong> @joke.AverageRating<br />
+                </p>
+                <p><strong>Rated by:</strong></p>
+                <ul>
+                    @foreach (var rater in joke.Raters)
+                    {
+                        <li>@rater</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        @await Html.PartialAsync("RatingForm", joke.RatingFormViewModel)
+    </div>
+</div>

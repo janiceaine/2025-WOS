@@ -1,0 +1,22 @@
+@model ConfirmDeleteViewModel
+
+@{
+    ViewData["Title"] = "Confirm Delete";
+    var joke = Model;
+}
+
+<h1 style="color: crimson;">@ViewData["Title"]</h1>
+
+<div class="card shadow">
+    <form asp-action="DeleteJoke" asp-controller="Jokes" asp-route-id="@joke.Id" method="post">
+        <input type="hidden" asp-for="Id" value="@joke.Id">
+        <div class="card-body">
+            <p class="display-4">Are you sure you want to delete this joke?</p>
+            <p>This action cannot be undone.</p>
+        </div>
+        <div class="card-footer text-end">
+            <a href="/jokes/@joke.Id" class="btn btn-outline-danger me-2">Cancel</a>
+            <button type="submit" class="btn btn-danger">Delete Joke</button>
+        </div>
+    </form>
+</div>

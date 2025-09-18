@@ -16,19 +16,22 @@ namespace TheVinylCountdown.Migrations
                 table: "Likes",
                 type: "datetime(6)",
                 nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+            );
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "UpdatedAt",
                 table: "Likes",
                 type: "datetime(6)",
                 nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+            );
 
             migrationBuilder.CreateIndex(
                 name: "IX_Likes_AlbumId",
                 table: "Likes",
-                column: "AlbumId");
+                column: "AlbumId"
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Likes_Albums_AlbumId",
@@ -36,27 +39,20 @@ namespace TheVinylCountdown.Migrations
                 column: "AlbumId",
                 principalTable: "Albums",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Cascade
+            );
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Likes_Albums_AlbumId",
-                table: "Likes");
+            migrationBuilder.DropForeignKey(name: "FK_Likes_Albums_AlbumId", table: "Likes");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Likes_AlbumId",
-                table: "Likes");
+            migrationBuilder.DropIndex(name: "IX_Likes_AlbumId", table: "Likes");
 
-            migrationBuilder.DropColumn(
-                name: "CreatedAt",
-                table: "Likes");
+            migrationBuilder.DropColumn(name: "CreatedAt", table: "Likes");
 
-            migrationBuilder.DropColumn(
-                name: "UpdatedAt",
-                table: "Likes");
+            migrationBuilder.DropColumn(name: "UpdatedAt", table: "Likes");
         }
     }
 }

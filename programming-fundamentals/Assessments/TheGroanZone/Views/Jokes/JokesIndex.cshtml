@@ -1,0 +1,19 @@
+@model JokesIndexViewModel
+
+@{
+    ViewData[index: "Title"] = "All Dad Jokes";
+    var jokes = Model.Jokes;
+}
+
+<h1 class="display-4">All Dad Jokes</h1>
+
+<ul class="row row-cols-1 row-cols-md-3 g-4 p-0">
+    @foreach (var joke in jokes)
+    {
+        <li class="mt-4" style="list-style-type: none;">
+
+            @await Html.PartialAsync("_JokeCard", joke)
+
+        </li>
+    }
+</ul>

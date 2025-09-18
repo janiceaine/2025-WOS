@@ -1,11 +1,12 @@
+@using TheGroanZone.ViewModels
+
 @model LoginFormViewModel
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Log In";
     var error = Model.Error;
-    ViewData[index: "BackgroundClass"] = "bg-vinyl";
 }
 
-<h1 class="display-2">Login</h1>
+<h1 class="display-2">Log In</h1>
 
 @if (error is not null)
 {
@@ -17,15 +18,12 @@
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<div class="card p-3 shadow-lg" style="max-width: 720px;">
+<div class="card p-3 shadow-lg" style="max-width: 740px">
     <div class="row g-0">
-        <div class="col-md-4">
-            <img src="/images/transparent-logo.svg" alt="logo" class="img-fluid me-3" style="max-width: 220px;">
-        </div>
         <div class="col-md-8">
             <div class="card-body">
                 <h2 class="card-title">Log In</h2>
-                <form asp-action="ProcessLoginForm" asp-controller="Vinyl" method="post">
+                <form asp-action="ProcessLoginForm" asp-controller="Account" method="post">
                     <div class="mb-3">
                         <label asp-for="Email" class="form-label">Email<span style="color: red;">*</span>:</label>
                         <input asp-for="Email" class="form-control" />
@@ -37,10 +35,13 @@
                         <span asp-validation-for="Password" class="form-text text-danger"></span>
                     </div>
                     <div class="text-end">
-                        <button type="submit" class="btn btn-primary">Log in</button>
+                        <button type="submit" class="btn btn-primary">Log In</button>
                     </div>
                 </form>
             </div>
         </div>
+       <div class="col-md-4">
+            <img src="/images/Subject2.png" alt="logo" class="img-fluid h-100 ww-100 object-fit-contain" style="max-width: 250px;">
+        </div> 
     </div>
 </div>

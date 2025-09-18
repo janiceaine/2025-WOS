@@ -1,0 +1,39 @@
+@model RatingFormViewModel
+
+@{
+    ViewData[index: "Title"] = "Rate";
+}
+
+<div class="form-text text-danger" asp-validation-summary="All"></div>
+<div class="card shadow">
+    <div class="card-body">
+        <form asp-controller="Jokes" asp-action="RateJoke" asp-route-id="@Model.JokeId" method="post">
+            <div class="mb-3">
+                <input type="hidden" asp-for="JokeId" />
+                <input type="hidden" asp-for="UserId" />
+
+                <label asp-for="UserRating" class="form-label">Rate this Joke: </label>
+                <select class="form-select" asp-for="UserRating">
+                    <option selected>Select groan amount...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <span class="form-text text-danger" asp-validation-for="UserRating"></span>
+            </div>
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">Rate</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (TempData[key: "RateMessage"] is string message)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@message</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
