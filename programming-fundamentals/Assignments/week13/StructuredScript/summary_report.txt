@@ -1,0 +1,6 @@
+Total record processed: 5
+Record 1: Alice Johnson
+Record 2: Bob Smith
+Record 3: Charlie Brown
+Record 4: Diana Prince
+Record 5: Edward Nygma

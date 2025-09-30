@@ -1,6 +1,7 @@
 using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using AspNetCoreGeneratedDocument;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -156,6 +157,11 @@ public class JokesController : Controller
 
         // check if User matches joke.UserId
 
+        if (maybeJoke.UserId != userId.Value)
+        {
+            return RedirectToAction("IntentionalForbidden", "Error");
+        }
+
         var vm = new JokeFormViewModel
         {
             Id = maybeJoke.Id,
@@ -178,7 +184,7 @@ public class JokesController : Controller
         // getting current user's id fron session
         var userId = HttpContext.Session.GetInt32(SessionUserId);
         // Redirect to Sign In if user is not signed in
-        if (userId is null)
+        if (userId is not int uid)
         {
             return RedirectToAction("LoginForm", "Account", new { message = "not-authenticated" });
         }
