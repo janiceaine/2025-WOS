@@ -1,7 +1,8 @@
 import pandas as pd
+NA_VALUES = [" ", "", "N/A", "NULL", "null"]
 
 def main():
-    df = pd.read_csv('raw_sales_data.csv', na_values=[" "])
+    df = pd.read_csv('raw_sales_data.csv', na_values=NA_VALUES)
     df.columns = df.columns.str.strip()
     name_map= {
         'Order_ID' : 'order_id',
@@ -28,7 +29,9 @@ def main():
     df = df.dropna(subset=['price'], inplace=False)
     df['discount_applied'].fillna(0.0, inplace=True)
 
-    #print(df)
+    print(df)
+
+    df.info()
 
     df['status'] = df['status'].str.lower().str.strip()
 
