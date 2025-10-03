@@ -35,6 +35,8 @@ def transform(product_list: list[dict]) -> DataFrame:
         )
 
     df.drop(columns=["reviews", "images", "thumbnail", "tags"], errors="ignore", inplace=True)
+    #df["tags"] = df["tags"].str.join(", ") (do this rather than dropping)
+    #df["images"] = df["images"].str.join(", ")
 
     return df
 
