@@ -36,3 +36,11 @@ This pipeline prepares the data for questions like:
 - Modular ETL structure (`extract()`, `transform()`, `load()`)
 - Color-coded terminal output for success, warnings, and errors
 - Easy to extend for other Hogwarts houses or character traits
+
+## Future Improvements
+
+To enhance data integrity, flexibility, and scalability, future versions of this pipeline may include:
+
+- **House Validation**: Prevent Gryffindor data from being loaded into mismatched tables or databases.
+- **Dynamic House Selection**: Add a `--house` argument to support other Hogwarts houses and auto-adjust the API and table name.
+- **Safe Load Modes**: Introduce a `--mode` flag (`replace`, `append`, `skip`) to control how data is written and protect existing records.
