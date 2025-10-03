@@ -29,7 +29,7 @@ This pipeline prepares the data for questions like:
 
 ## How to Run
 1. Install dependencies: `pip install -r requirements.txt`
-2. Run the pipeline: `python gryffindor_pipeline.py`
+2. Run the pipeline: `python gryffindor_pipeline.py` or `py gryffindor.py --db gryffindor_data.db --table gryffindor_characters`
 3. View the database using any SQLite viewer (e.g. VS Code extension)
 
 ## Features

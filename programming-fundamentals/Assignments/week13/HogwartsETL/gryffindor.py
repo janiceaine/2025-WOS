@@ -149,25 +149,26 @@ def load(df: pd.DataFrame, db_file: str, table_name: str):
         df.to_sql(name=table_name, con=conn, if_exists="replace", index=False)
     print(
         Fore.BLUE
-        + f"Data loaded {len(df)} names into SQLite table '{table_name}' successfully!"
+        + f"Data loaded {len(df)} names into SQLite table '{table_name}' successfully!" + Style.RESET_ALL
     )
+    
 
 
 def get_config():
     """Parse command-line arguments for DB and table config."""
     parser = argparse.ArgumentParser(description="Gryffindor Characters ETL Pipeline")
     parser.add_argument(
-        "--db", # Add a --db argument to specify the SQLite database filename
-        default="gryffindor_data.db", #If filename is not provided, it defaults to 'gryffindor_data.db'
+        "--db",  # Add a --db argument to specify the SQLite database filename
+        default="gryffindor_data.db",  # If filename is not provided, it defaults to 'gryffindor_data.db'
         type=str,
-        #required=True, # to be explicit, this forces user to include arguemts even when default is set
+        # required=True, # to be explicit, this forces user to include arguemts even when default is set
         help="SQLite database filename",
     )
     parser.add_argument(
-        "--table", # Add a --table argument to specify the Sname of the table inside the database
-        default="gryffindor_characters", # Defaults to 'gryffindor_characters' if tablename is not provided
+        "--table",  # Add a --table argument to specify the Sname of the table inside the database
+        default="gryffindor_characters",  # Defaults to 'gryffindor_characters' if tablename is not provided
         type=str,
-        #required=True, # to be explicit, this forces user to include arguemts even when default is set
+        # required=True, # to be explicit, this forces user to include arguemts even when default is set
         help="Table name inside the database",
     )
     return parser.parse_args()
@@ -190,12 +191,17 @@ def main():
 
     load(clean_df, DB_FILE, "gryffindor_characters")
 
+    print(Fore.CYAN + "-" * 60 + Style.RESET_ALL)
     print(clean_df.info())
+    print(Fore.CYAN + "-" * 60 + Style.RESET_ALL)
+    print(Fore.GREEN + "Sample Data (first 5 rows):" + Style.RESET_ALL)
+    print(Fore.CYAN + "-" * 60 + Style.RESET_ALL)
+
+    
     print(clean_df.head())
 
     # pprint(clean_df[:1])
     # pprint(clean_df[:1].to_dict(orient="records"))
-
 
 if __name__ == "__main__":
     init(autoreset=True)
